@@ -74,11 +74,11 @@ public class Star {
             System.out.println();
         }
         System.out.println("==========================");
-        for(int i = 0; i < 6; i++){
-            for (int j = 0; j < 5 - i; j++) {
+        for(int i = 0; i < 5; i++){
+            for (int j = 0; j < 5 - 1 - i; j++) {
                 System.out.print(" ");
             }
-            for(int j = 0; j < (i*2)-1; j++){
+            for(int j = 0; j < (i + 1) * 2 -1; j++){
                 System.out.print("*");
             }
             System.out.println();

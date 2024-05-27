@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class ArrayService {
     public static void main(String[] args) {
+        ArrayUtills arrayUtills = new ArrayUtills();
+
         Scanner scanner = new Scanner(System.in);
         String[] names = new String[0];
 
@@ -20,11 +22,13 @@ public class ArrayService {
             System.out.print("메뉴 선택: ");
 
             String selectedMenu = scanner.nextLine();
+            String[] newNames = null;
+            int findIndex = -1;
 
             switch (selectedMenu){
                 case "1":
                     System.out.println("[이름 등록]");
-                    String[] newNames = new String[names.length + 1];
+                    newNames = new String[names.length + 1];
                     for(int i = 0; i < names.length; i++){
                         newNames[i] = names[i];
                     }
@@ -36,24 +40,69 @@ public class ArrayService {
                     break;
                 case "2":
                     System.out.println("[이름 수정]");
-                    System.out.print("수정 해야할 이름: ");
+                    System.out.print("수정 할 이름:");
+                    String modifyName = scanner.nextLine();
+
+                    findIndex = arrayUtills.findIndexByname(names, modifyName);
+                    if(findIndex == -1){
+                        System.out.println("해당 이름은 존재하지 않습니다.");
+                        break;
+                    }
+                    System.out.print("새 이름: ");
+                    names[findIndex] = scanner.nextLine();
+                    System.out.println("수정 완료!");
+                    /*
+                    System.out.println("[이름 수정]");
+                    System.out.print("수정 할 이름: ");
                     String fixName = scanner.nextLine();
+
+                    System.out.print("수정 후 이름:");
+                    String fixName_1 = scanner.nextLine();
+
+                    boolean FixName = false;
+
                     for(int i = 0; i < names.length; i++){
                         if(names[i].equals(fixName)){
-                            System.out.println("수정할 이름:");
-                            String fixName_1 = scanner.nextLine();
-
-                            System.out.println("수정 전 이름: " + names[i] + ", 수정 후 이름: " + fixName_1);
+                            FixName = true;
                             names[i] = fixName_1;
                             break;
                         }
                     }
+                    if(FixName == false){
+                        System.out.println("해당 이름은 수정할 수 없습니다.");
+                        break;
+                    }
+                    System.out.println(fixName + "에서 " + fixName_1 + "(으)로 바귀었습니다.");
+
+                     */
                     break;
                 case "3":
+
+                    System.out.println("[이름 삭제]");
+                    System.out.print("삭제 할 이름:");
+                    String removeName = scanner.nextLine();
+                    findIndex = arrayUtills.findIndexByname(names, removeName);
+                    if(findIndex == -1){
+                        System.out.println("해당 이름은 존재하지 않습니다.");
+                        break;
+                    }
+                    newNames = new String[names.length - 1];
+                    for(int i = 0; i < newNames.length; i++){
+                        if(i < findIndex){
+                            newNames[i] = names[i];
+                            continue;
+                        }
+                        newNames[i] = names[i + 1];
+                    }
+                    System.out.println(removeName + "을(를) 삭제하였습니다.");
+                    names = newNames;
+                    /*
                     System.out.println("[이름 삭제]");
                     System.out.print("삭제할 이름: ");
+
                     String delateName = scanner.nextLine();
                     String[] newNames2 = new String[names.length - 1];
+
                     boolean test = false;
                     for(int i = 0; i < newNames2.length; i++){
                         if(names[i].equals(delateName)){
@@ -61,21 +110,25 @@ public class ArrayService {
                         }
                         newNames2[i] = test == true? names[i+1]: names[i];
                     }
+                    if(names[names.length-1].equals(delateName)){ // for문에서 names의 마지막 방은 체크가 되지 않아서 하는 if문
+                        test = true;
+                    }
+                    if(test == false){
+                        System.out.println("해당 이름은 삭제할 수 없습니다.");
+                        break;
+                    }
+                    System.out.println(delateName + "을(를) 삭제하였습니다.");
                     names = newNames2;
+                    */
                     break;
                 case "4":
                     System.out.println("[이름 찾기]");
                     System.out.print("조회 할 이름: ");
-                    String result = null;
+
                     String findName = scanner.nextLine();
-                    for(String name : names) {
-                        if(name.equals(findName)){
-                            result = name;
-                            break;
-                        }
-                    }
-                    if(result == null){
-                        System.out.println("해당 이름은 존재하지 않는 이름입니다.");
+                    findIndex = arrayUtills.findIndexByname(names, findName);
+                    if(findIndex == -1){
+                        System.out.println("해당 이름은 존재하지 않습니다.");
                         break;
                     }
                     System.out.println("해당 이름은 등록된 이름입니다.");

@@ -1,4 +1,4 @@
-package com.study.java_study.ch09_클래스04;
+package com.study.java_study.ch09_클래스04.복습;
 
 
 // 저장소 -> CRUD
@@ -14,28 +14,28 @@ public class BookRepository {
         return ++bookId;
     }
 
-    private void extendBooks(){
+    private void extendBooks(){ // 정부 추가를 위해 배열을 늘리는 메소드
         // 기존 배열보다 크기가 하나 더 큰 배열을 생선한다.
-        BookEntity[] newBooks = new BookEntity[books.length + 1];
+        BookEntity[] newBooks = new BookEntity[books.length + 1]; // 기존보다 하나 더 많은 배열 선언
 
         // 기존 배열의 정보를 새로운 배열로 모두 옮긴다. 이 때 마지막 인덱스의 값은 반값이다.
         for(int i = 0; i < books.length; i++){
-            newBooks[i] = books[i];
+            newBooks[i] = books[i]; // 기존에 있는 값들을 모두 새 배열로 욺김
         }
         // 기존 배열의 주소가 들어있는 books 변수에 새로운 배열의 주소를 대입한다.
-        books = newBooks;
+        books = newBooks;   // 새 배열을 기존 배열 주소로 변경
     }
 
     private int getLastIndex(){
         return books.length - 1;
     }
 
-    public void saveBook(BookEntity book){
+    public void saveBook(BookEntity book){  // 도서 정보 저장 메소드
         // 배열 확장
-        extendBooks();
+        extendBooks();  // 도서 정보를 저장하기 위해 배열을 늘리는 메소드 호출
 
         // 새로운 배열의 비었는 마지막 인덱스에 매개변수로 받아온 book 객체를 대입한다.
-        books[books.length - 1] = book;
+        books[books.length - 1] = book; // 새 배열 마지막 방에 추가할려는 도서 정보 대입
     }
 
     public BookEntity findBookByBookId(int bookId){ // 선형탐색 알고리즘
@@ -101,7 +101,7 @@ public class BookRepository {
 
     // 다건조회
     public BookEntity[] searchBooks(int option, String searchText){
-       int newArraySize = getNewArraySize(option, searchText);
+       int newArraySize = getNewArraySize(option, searchText); //
        BookEntity[] searchBooks = new BookEntity[newArraySize];
 
         int i = 0;

@@ -1,6 +1,4 @@
-package com.study.java_study.클래스03;
-
-import com.study.java_study.ch07_클래스02.StudyB;
+package com.study.java_study.ch08_클래스03;
 
 public class Student {
 

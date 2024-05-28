@@ -1,4 +1,4 @@
-package com.study.java_study.클래스03;
+package com.study.java_study.ch08_클래스03;
 
 public class 은행 {
     private int 잔액;

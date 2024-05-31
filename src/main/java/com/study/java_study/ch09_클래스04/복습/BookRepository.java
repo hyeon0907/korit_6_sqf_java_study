@@ -59,7 +59,6 @@ public class BookRepository {
         }
         return findBook;
     }
-    /*
     private int getNewArraySize(int option, String searchText){ // searchBooks의 배열 크기를 알아내는 메소드
         int newArraySize = 0;   // 변수 초기화 // 검색 조건에 해당할때마다 1씩 증가
 
@@ -144,51 +143,5 @@ public class BookRepository {
 
         return searchBooks;
     }
-     */
 
-    public BookEntity[] searchBooks(int option, String searchText) {
-        BookEntity[] searchBooks = new BookEntity[0];
-        int stack = 0;
-
-        for (int i = 0; i < 2; i++) {
-            searchBooks = new BookEntity[stack];
-            stack = 0;
-            switch (option) {
-                case 1: // 통합검색
-                    for (BookEntity book : books) {
-                        if (book.getBookName().contains(searchText)
-                                || book.getAuthor().contains(searchText)
-                                || book.getPublisher().contains(searchText)) {
-                            searchBooks[stack++] = book;
-                        }
-                    }
-                    break;
-                case 2: // 도서명검색
-                    for (BookEntity book : books) {
-                        if (book.getBookName().contains(searchText)) {
-                            if(i == 1) searchBooks[stack] = book;
-                            stack++;
-                        }
-                    }
-                    break;
-                case 3: // 저자명
-                    for (BookEntity book : books) {
-                        if (book.getAuthor().contains(searchText)) {
-                            if(i == 1) searchBooks[stack] = book;
-                            stack++;
-                        }
-                    }
-                    break;
-                case 4: // 출판사명검색
-                    for (BookEntity book : books) {
-                        if (book.getPublisher().contains(searchText)) {
-                            if(i == 1) searchBooks[stack] = book;
-                            stack++;
-                        }
-                    }
-                    break;
-            }
-        }
-        return searchBooks;
-    }
 }

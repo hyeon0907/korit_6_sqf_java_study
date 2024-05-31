@@ -1,5 +1,6 @@
 package com.study.java_study.ch09_클래스04;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class BookService {
@@ -11,7 +12,7 @@ public class BookService {
         scanner = new Scanner(System.in);
         bookRepository = new BookRepository();
     }
-
+    /*
     private String selectMenu(){
         String menus = "1234q";
         String seltedMenu = null;
@@ -26,6 +27,23 @@ public class BookService {
 
         return seltedMenu;
     }
+    */
+
+    private String selectMenu(){
+        String[] menus = {"1", "2", "3", "4", "q"};
+        String selectedMenu = null;
+
+        while (true){
+            System.out.print("메뉴 선택: ");
+            selectedMenu = scanner.nextLine();
+            if(Arrays.binarySearch(menus, selectedMenu) > -1){
+                break;
+            }
+            System.out.println("잘못된 입력입니다. 다시 입력하세요.");
+        }
+
+        return selectedMenu;
+    }
 
     public boolean run(){
         boolean isRun = true;
@@ -37,9 +55,9 @@ public class BookService {
         System.out.println("4. 도서 삭제");
         System.out.println("q. 프로그램 종료");
 
-        String seltedMenu = selectMenu();
+        String selectedMenu = selectMenu();
 
-        switch (seltedMenu){
+        switch (selectedMenu){
             case "q":
                 isRun = false;
                 break;
@@ -184,15 +202,7 @@ public class BookService {
                         break;
                     }
                     break;
-
             }
         }
-        String bookName = duplicateBookName();
-        String author = validateValue("저자");
-        String publisher = validateValue("출판사");
-
-        book.setBookName(bookName);
-        book.setAuthor(author);
-        book.setPublisher(publisher);
     }
 }

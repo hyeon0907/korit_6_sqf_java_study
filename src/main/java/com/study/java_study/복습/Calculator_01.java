@@ -14,10 +14,6 @@ public class Calculator_01 {
         if(operator.equals("+")) System.out.println("출력: " + operator);
 
         system.pause();
-
-        System.out.print("입력: ");
-        operator = scanner.nextLine();
-        System.out.println("출력: " + operator);
     }
 }
 

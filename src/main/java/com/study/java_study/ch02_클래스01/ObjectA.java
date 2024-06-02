@@ -4,4 +4,5 @@ public class ObjectA {
     int num;
     String name;
 
+
 }
